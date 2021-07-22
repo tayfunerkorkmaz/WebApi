@@ -4,21 +4,21 @@ using WebApi.Common;
 
 namespace WebApi.BookOperations.GetBooks
 {
-    public class GetBookById
+    public class GetBookByIdQuery
     {
 
         public int id { get; set; }
         private readonly BookStoreDbContext _dbContext;
 
-        public GetBookById(BookStoreDbContext dbContext)
+        public GetBookByIdQuery(BookStoreDbContext dbContext)
         {
             _dbContext = dbContext;
         }
 
         public BookByIdViewModel Handle()
         {
-            var book = _dbContext.Books.SingleOrDefault(x => x.Id == id);
-
+            //var book = _dbContext.Books.SingleOrDefault(x => x.Id == id);
+            var book = _dbContext.Books.Where(x => x.Id == id).SingleOrDefault();
             if (book is null)
             {
                 return null;

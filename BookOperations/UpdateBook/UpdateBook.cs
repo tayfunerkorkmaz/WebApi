@@ -25,10 +25,10 @@ namespace WebApi.BookOperations.UpdateBook
                 throw new InvalidOperationException("Book is not found!");
             }
 
-            book.Title = updatedBook.Title;
-            book.GenreId = updatedBook.GenreId;
-            book.PageCount = updatedBook.PageCount;
-            book.PublishDate = updatedBook.PublishDate;
+            book.Title = updatedBook.Title != default ? updatedBook.Title : book.Title;
+            book.GenreId = updatedBook.GenreId!= default ? updatedBook.GenreId : book.GenreId;
+            book.PageCount = updatedBook.PageCount!= default ? updatedBook.PageCount : book.PageCount;
+            book.PublishDate = updatedBook.PublishDate!= default ? updatedBook.PublishDate : book.PublishDate;
 
             _dbContext.SaveChanges();
         }
